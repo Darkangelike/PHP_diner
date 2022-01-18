@@ -248,9 +248,9 @@ $ashley->introduceMyself();
 echo "<br>";
 echo "My salary is " . $ashley->getSalary() . "€.";
 echo "<br>";
-$ashley->serveSparklingWater("Perrier") . "€.";
+$ashley->serveSparklingWater("Perrier");
 echo "<br>";
-$ashley->serveWine("red wine") . "€.";
+$ashley->serveWine("red wine");
 echo "<br>";
 echo "<br>";
 

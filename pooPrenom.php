@@ -67,7 +67,7 @@ abstract class Employee
 
 interface Servicing
 {
-    public function getOrder($dishName);
+    public function getOrder();
 }
 
 class Commis extends Employee
@@ -109,9 +109,9 @@ class Waiter extends Employee implements Servicing
     {
         echo "Hello, welcome to the restaurant 'Chez Claudio'!<br> My name is {$this->name}, please follow me.";
     }
-    public function getOrder($dishName)
+    public function getOrder()
     {
-        echo "Hello, I am your waitress {$this->name}. Can I take your order?<br>A {$dishName}, noted!";
+        echo "Hello, I am your waitress {$this->name}. Can I take your order?";
     }
     public function serveDish(string $dishName)
     {
@@ -177,14 +177,39 @@ class Chef extends Employee
 
 class Intern implements Servicing
 {
-    public function getOrder($dishName)
+
+    private string $name;
+
+    public function __construct($nameGiven)
+    {   
+        $this->name = $nameGiven;
+    }
+
+    // METHODS
+
+    public function getOrder()
     {
-        echo "Hello, I will be servicing you today. Can I take your order?<br>Alright, a {$dishName}, noted!";
+        echo "Hello, I am {$this->getName()} and I will be servicing you today. Can I take your order?";
+    }
+
+    // GETTERS
+
+    public function getName()
+    {
+        return $this->name;
     }
 }
 
 class Client
 {
+
+    public string $name;
+
+    public function __construct($nameGiven)
+    {
+        $this->name = $nameGiven;
+    }
+
     // METHODS
 
     public function eat($dishName)
@@ -197,8 +222,10 @@ class Client
     }
     public function order($dishName, Servicing $employeesName)
     {
-        echo "Hi {$employeesName->getName()}, I would like to order a {$dishName}.";
-        $employeesName->getOrder($dishName);
+        echo $employeesName->getName() . " : ";
+        $employeesName->getOrder();
+        echo "<br>";
+        echo "{$this->name} : Hi {$employeesName->getName()}, I would like to order a {$dishName}.";
     }
 
 }
@@ -251,17 +278,19 @@ $alec->cookDuckALOrange();
 echo "<br>";
 echo "<br>";
 
-$jack = new Intern();
+$jack = new Intern("Jack");
 echo "Intern 'Jack': <br>";
 $jack->getOrder("canard à l'orange");
 echo "<br>";
 echo "<br>";
 
-$chaeyoung = new Client();
-echo "Client 'Chaeyoung' :<br>";
+$chaeyoung = new Client("Chaeyoung");
+echo "Client 'Chaeyoung' ordering :<br>";
 $chaeyoung->order("chicken and fries", $clementine);
 echo "<br>";
+echo "<br>";
 $chaeyoung->eat("chicken and fries");
+echo "<br>";
 echo "<br>";
 $chaeyoung->pay("chicken and fries");
 echo "<br>";

@@ -67,7 +67,7 @@ abstract class Employee
 
 interface Servicing
 {
-    public function getOrder();
+    public function getOrder($dishName);
 }
 
 class Commis extends Employee
@@ -109,9 +109,9 @@ class Waiter extends Employee implements Servicing
     {
         echo "Hello, welcome to the restaurant 'Chez Claudio'!<br> My name is {$this->name}, please follow me.";
     }
-    public function getOrder()
+    public function getOrder($dishName)
     {
-        echo "Hello, I am your waitress {$this->name}. Can I take your order?";
+        echo "Hello, I am your waitress {$this->name}. Can I take your order?<br>A {$dishName}, noted!";
     }
     public function serveDish(string $dishName)
     {
@@ -177,9 +177,9 @@ class Chef extends Employee
 
 class Intern implements Servicing
 {
-    public function getOrder()
+    public function getOrder($dishName)
     {
-        echo "Hello, I will be servicing you today. Can I take your order?";
+        echo "Hello, I will be servicing you today. Can I take your order?<br>Alright, a {$dishName}, noted!";
     }
 }
 
@@ -198,6 +198,7 @@ class Client
     public function order($dishName, Servicing $employeesName)
     {
         echo "Hi {$employeesName->getName()}, I would like to order a {$dishName}.";
+        $employeesName->getOrder($dishName);
     }
 
 }
@@ -252,7 +253,7 @@ echo "<br>";
 
 $jack = new Intern();
 echo "Intern 'Jack': <br>";
-$jack->getOrder();
+$jack->getOrder("canard à l'orange");
 echo "<br>";
 echo "<br>";
 

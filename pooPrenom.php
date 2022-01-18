@@ -285,8 +285,12 @@ echo "<br>";
 echo "<br>";
 
 $chaeyoung = new Client("Chaeyoung");
-echo "Client 'Chaeyoung' ordering :<br>";
+echo "Client 'Chaeyoung' ordering with the waitress:<br>";
 $chaeyoung->order("chicken and fries", $clementine);
+echo "<br>";
+echo "<br>";
+echo "Client 'Chaeyoung' ordering with the intern:<br>";
+$chaeyoung->order("canard à l'orange", $jack);
 echo "<br>";
 echo "<br>";
 $chaeyoung->eat("chicken and fries");
